@@ -2,12 +2,12 @@ import React, { useReducer } from 'react';
 
 import TodoContext from './todoContext';
 import todoReducer from './todoReducer';
-import { ADD_TODO, DELETE_TODO, EDIT_TODO } from '../types';
+import { ADD_TODO, DELETE_TODO, EDIT_TODO, TOGGLE_TODO } from '../types';
+
 
 const TodoState = props => {
 	const initialState = {
-
-    counter: 2,
+		
 		todos: [
 			{
 				id: 1,
@@ -26,14 +26,29 @@ const TodoState = props => {
 
 	// add todos
 
-	// delete todos
+	const addTodo = todo => {
+		dispatch({ type: ADD_TODO, payload: todo });
+	};
 
-	// edit todos
+  // delete todos
+  const deleteTodo = todo => {
+    dispatch({ type: DELETE_TODO, payload: todo.id})
+  }
+
+  // edit todos
+  
+  // toggle todo
+  const toggleTodo = todo => {
+    dispatch({ type: TOGGLE_TODO, payload: todo.id})
+  }
 
 	return (
 		<TodoContext.Provider
 			value={{
-				todos: state.todos
+				todos: state.todos,
+        addTodo,
+        toggleTodo,
+        deleteTodo
 			}}
 		>
 			{props.children}

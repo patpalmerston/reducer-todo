@@ -5,13 +5,18 @@ const TodoItem = ({todo}) => {
   
   const todoContext = useContext(TodoContext);
 
-  const { deletTodo } = todoContext;// to be made 
+  const { deleteTodo, toggleTodo } = todoContext;// to be made 
 
   const { id, item, completed } = todo;
+
+  const onDelete = () => {
+    deleteTodo()
+  }
   
   return (
-    <div>
+    <div style={{ textDecoration: completed ? 'line-through' : "none"}}>
       {item}
+      <button onClick={onDelete}>x</button>
     </div>
   )
 }
