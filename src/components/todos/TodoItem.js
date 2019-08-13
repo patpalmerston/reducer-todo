@@ -9,15 +9,19 @@ const TodoItem = ({todo}) => {
 
   const { id, item, completed } = todo;
 
-  const onDelete = () => {
-    deleteTodo()
+  const onDelete = (e) => {
+    e.preventDefault()
+    deleteTodo(todo)
   }
   
   return (
-    <div style={{ textDecoration: completed ? 'line-through' : "none"}}>
+    <li 
+      onClick={() => toggleTodo(todo)}
+      style={{ textDecoration: completed ? 'line-through' : "none"}}
+    >
       {item}
-      <button onClick={onDelete}>x</button>
-    </div>
+      <button onClick={onDelete}>Delete</button>
+    </li>
   )
 }
 
